@@ -23,7 +23,8 @@
 		"monitor"
 	],
 	"dependencies": {
-		"async": "*"
+		"async": "*",
+        "underscore": "*"
 	},
 	"devDependencies": {
 		"buster": "*",

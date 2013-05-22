@@ -41,5 +41,50 @@ module.exports = testCase('TimeLock', {
         lock('A', stub2);
 
         assert.calledOnce(stub2);
+    },
+    'when locked on key with timeout = 1000ms': {
+        setUp: function () {
+            this.clock = sinon.useFakeTimers(Date.UTC(2000, 0, 1));
+            this.lock = TimeLock(1000);
+            this.stub1 = sinon.stub();
+            this.stub2 = sinon.stub();
+            this.lock('A', this.stub1);
+            this.lock('A', this.stub2);
+        },
+        tearDown: function () {
+            this.clock.restore();
+        },
+        'and first in queue is done': {
+            setUp: function () {
+                this.stub1.firstCall.args[0]();
+            },
+            'should access the next in queue': function () {
+                assert.calledOnce(this.stub2);
+            },
+            'and >1000ms goes should NOT call it again': function () {
+                this.clock.tick(3000);
+                assert.calledOnce(this.stub1);
+                assert.calledOnce(this.stub2);
+            }
+        },
+        'and 999ms goes should NOT call next in queue': function () {
+            this.clock.tick(999);
+            assert.calledOnce(this.stub1);
+            refute.called(this.stub2);
+        },
+        'and 1000ms goes': {
+            setUp: function () {
+                this.clock.tick(1000);
+            },
+            'should call next in queue': function () {
+                assert.calledOnce(this.stub1);
+                assert.calledOnce(this.stub2);
+            },
+            'and first in queue is done should NOT call the next in queue again': function () {
+                this.stub1.firstCall.args[0]();
+                assert.calledOnce(this.stub1);
+                assert.calledOnce(this.stub2);
+            }
+        }
     }
 });
