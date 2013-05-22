@@ -23,6 +23,7 @@
 		"monitor"
 	],
 	"dependencies": {
+		"async": "*"
 	},
 	"devDependencies": {
 		"buster": "*",
