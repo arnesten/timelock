@@ -1,0 +1,34 @@
+{
+	"name": "timelock",
+	"version": "0.0.1",
+	"description": "Lock resources with a timeout",
+	"main": "./lib/timeLock.js",
+	"directories": {
+		"test": "test"
+	},
+	"scripts": {
+		"test": "node test/runAll.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/arnesten/timelock"
+	},
+	"bugs": {
+		"url": "https://github.com/arnesten/timelock/issues"
+	},
+	"keywords": [
+		"lock",
+		"queue",
+		"async",
+		"monitor"
+	],
+	"dependencies": {
+	},
+	"devDependencies": {
+		"buster": "*",
+		"buster-helpers": "https://github.com/arnesten/buster-helpers/archive/master.tar.gz",
+		"sinon": "*"
+	},
+	"author": "Calle Arnesten<calle.arnesten@codekick.com>",
+	"license": "MIT"
+}
