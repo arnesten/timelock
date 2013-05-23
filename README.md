@@ -25,13 +25,13 @@ lock('A', function (release) {
 ## Create lock
 
 Signature for creating a lock is `TimeLock(timeout)`.
-If no timeout is given, the lock will always remain until released.
+If no timeout is given, the lock will remain until released.
 
 ## Lock on key
 
-Signature for locking on a key is `lock(key, callback)'.
-'key' could be any string. When 'key' is available (or timed out), the `callback` is called.
-The callback signature is `(release)`. Release should be called to release the lock and allowed
+Signature for locking on a key is `lock(key, callback)`, where 'key' could be any string.
+As soon as `key` is available (or timed out), the `callback` is called.
+The callback signature is `(release)`, and `release` should be called to release the lock and allowed
 other queued callbacks to be called.
 
 ## License
