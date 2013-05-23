@@ -29,9 +29,9 @@ If no timeout is given, the lock will remain until released.
 
 ## Lock on key
 
-Signature for locking on a key is `lock(key, callback)`, where 'key' could be any string.
+Signature for locking on a key is `lock(key, callback)`, where `key` could be any string.
 As soon as `key` is available (or timed out), the `callback` is called.
-The callback signature is `(release)`, and `release` should be called to release the lock and allowed
+The callback signature is `(release)`, and `release` should be called to release the lock and allow
 other queued callbacks to be called.
 
 ## License
