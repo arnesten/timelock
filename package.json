@@ -1,8 +1,8 @@
 {
 	"name": "timelock",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"description": "Lock resources with a timeout",
-	"main": "./lib/timeLock.js",
+	"main": "./lib/TimeLock.js",
 	"directories": {
 		"test": "test"
 	},
