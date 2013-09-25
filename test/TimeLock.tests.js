@@ -1,8 +1,8 @@
 var buster = require('buster');
 var sinon = require('sinon');
 var testCase = buster.testCase;
-var assert = buster.assertions.assert;
-var refute = buster.assertions.refute;
+var assert = buster.assert;
+var refute = buster.refute;
 var TimeLock = require('../lib/TimeLock.js');
 
 module.exports = testCase('TimeLock', {
@@ -96,5 +96,20 @@ module.exports = testCase('TimeLock', {
 
 		assert.calledOnce(stub1);
 		refute.called(stub2);
+	},
+	'when released should not run until callback has finished': function (done) {
+		// Rationale: Sometimes the lock is released before all operations in callback are finished
+		var lock = new TimeLock();
+		lock('A', function (release) {
+			var stub = sinon.stub();
+			lock('A', stub);
+
+			release();
+			refute.called(stub);
+			setTimeout(function () {
+				assert.called(stub);
+				done();
+			}, 1);
+		});
 	}
 });
