@@ -1,5 +1,6 @@
 test
 .gitignore
+.npmignore
 .idea
 node_modules
 npm-debug.log
