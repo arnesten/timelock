@@ -1,6 +1,6 @@
 {
 	"name": "timelock",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"description": "Lock resources with a timeout",
 	"main": "./lib/TimeLock.js",
 	"directories": {
@@ -23,13 +23,10 @@
 		"monitor"
 	],
 	"dependencies": {
-		"async": "*",
-        "underscore": "*"
+		"async": "*"
 	},
 	"devDependencies": {
-		"buster": "*",
-		"buster-helpers": "https://github.com/arnesten/buster-helpers/archive/master.tar.gz",
-		"sinon": "*"
+		"bocha": "^1.0.1"
 	},
 	"author": "Calle Arnesten<calle.arnesten@codekick.com>",
 	"license": "MIT"

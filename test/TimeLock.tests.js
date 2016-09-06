@@ -1,16 +1,17 @@
-var buster = require('buster');
-var sinon = require('sinon');
-var testCase = buster.testCase;
-var assert = buster.assert;
-var refute = buster.refute;
-var TimeLock = require('../lib/TimeLock.js');
+'use strict';
+let bocha = require('bocha');
+let sinon = bocha.sinon;
+let testCase = bocha.testCase;
+let assert = bocha.assert;
+let refute = bocha.refute;
+let TimeLock = require('../lib/TimeLock.js');
 
 module.exports = testCase('TimeLock', {
 	'when locked on key no other access are called': function () {
-		var stub1 = sinon.stub();
-		var stub2 = sinon.stub();
-		var stub3 = sinon.stub();
-		var lock = TimeLock();
+		let stub1 = sinon.stub();
+		let stub2 = sinon.stub();
+		let stub3 = sinon.stub();
+		let lock = TimeLock();
 		lock('A', stub1);
 		lock('A', stub2);
 		lock('A', stub3);
@@ -20,10 +21,10 @@ module.exports = testCase('TimeLock', {
 		refute.called(stub3);
 	},
 	'when locked on different keys, all access are called directly': function () {
-		var stub1 = sinon.stub();
-		var stub2 = sinon.stub();
-		var stub3 = sinon.stub();
-		var lock = TimeLock();
+		let stub1 = sinon.stub();
+		let stub2 = sinon.stub();
+		let stub3 = sinon.stub();
+		let lock = TimeLock();
 		lock('A', stub1);
 		lock('B', stub2);
 		lock('C', stub3);
@@ -33,9 +34,9 @@ module.exports = testCase('TimeLock', {
 		assert.calledOnce(stub3);
 	},
 	'when locked on key and then released synchronously, new access can be made directly': function () {
-		var stub1 = sinon.spy();
-		var stub2 = sinon.stub();
-		var lock = TimeLock();
+		let stub1 = sinon.spy();
+		let stub2 = sinon.stub();
+		let lock = TimeLock();
 		lock('A', stub1);
 		stub1.firstCall.args[0](); // release
 		lock('A', stub2);
@@ -88,9 +89,9 @@ module.exports = testCase('TimeLock', {
 		}
 	},
 	'can be created with new keyword': function () {
-		var stub1 = sinon.stub();
-		var stub2 = sinon.stub();
-		var lock = new TimeLock();
+		let stub1 = sinon.stub();
+		let stub2 = sinon.stub();
+		let lock = new TimeLock();
 		lock('A', stub1);
 		lock('A', stub2);
 
@@ -99,9 +100,9 @@ module.exports = testCase('TimeLock', {
 	},
 	'when released should not run until callback has finished': function (done) {
 		// Rationale: Sometimes the lock is released before all operations in callback are finished
-		var lock = new TimeLock();
+		let lock = new TimeLock();
 		lock('A', function (release) {
-			var stub = sinon.stub();
+			let stub = sinon.stub();
 			lock('A', stub);
 
 			release();
