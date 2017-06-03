@@ -15,8 +15,8 @@ doSomethingAsync(() => {
     release();
 });
 
-lock('A').then(() => {;
-    // Will not be called until lock released or 2000 ms have passed
+lock('A').then(release2 => {;
+    // Will not be called until first lock released or 2000 ms have passed
 });
 ```
 
