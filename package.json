@@ -1,6 +1,6 @@
 {
 	"name": "timelock",
-	"version": "1.1.2",
+	"version": "1.2.0",
 	"description": "Lock resources with a timeout",
 	"main": "./lib/TimeLock.js",
 	"directories": {
@@ -26,7 +26,7 @@
 		"async": "*"
 	},
 	"devDependencies": {
-		"bocha": "^1.0.1"
+		"bocha": "^1.0.5"
 	},
 	"author": "Calle Arnesten<calle.arnesten@codekick.com>",
 	"license": "MIT"
