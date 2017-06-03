@@ -2,7 +2,25 @@
 
 Lock a resource with optional timeout.
 
-## Example
+## Example with promises
+
+```javascript
+var TimeLock = require('timelock');
+
+var lock = TimeLock(2000);
+
+// Lock on the key 'A'
+let release = await lock('A');
+doSomethingAsync(() => {
+    release();
+});
+
+lock('A').then(() => {;
+    // Will not be called until lock released or 2000 ms have passed
+});
+```
+
+## Example with callback
 
 ```javascript
 var TimeLock = require('timelock');
@@ -38,7 +56,7 @@ other queued callbacks to be called.
 
 (The MIT License)
 
-Copyright (c) 2013-2016 Calle Arnesten
+Copyright (c) 2013-2017 Calle Arnesten
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
